@@ -8,6 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q OsmNav.zip
+      - run: |
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g" >> OsmNav/gradle.properties
+          echo "kotlin.daemon.jvmargs=-Xmx3g" >> OsmNav/gradle.properties
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
