@@ -8,6 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q OsmNav.zip
+      - run: sed -i "s/__MAPTILER_KEY__/$KEY/" OsmNav/app/src/main/java/com/example/osmnav/MainActivity.kt
+        env:
+          KEY: ${{ secrets.MAPTILER_KEY }}
       - run: |
           echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g" >> OsmNav/gradle.properties
           echo "kotlin.daemon.jvmargs=-Xmx3g" >> OsmNav/gradle.properties
